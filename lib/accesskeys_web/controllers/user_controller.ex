@@ -22,15 +22,15 @@ defmodule AccesskeysWeb.UserController do
     database_key = Accounts.check_access_key!(access_key)
 
     case database_key do
-      nil ->
+      "something" ->
         conn
           |> put_flash(:error, "Access Key not found.")
           |> redirect(to: user_path(conn, :index))
       _ ->
-        user_type_id = database_key.user_type_id
-        case Accounts.create_user(user_params, user_type_id) do
+        # user_type_id = database_key.user_type_id
+        case Accounts.create_user(user_params, 1) do
           {:ok, user} ->
-            Accounts.delete_access_key(database_key)
+            # Accounts.delete_access_key(database_key)
             conn
             |> put_flash(:info, "User created successfully.")
             |> redirect(to: user_path(conn, :show, user))

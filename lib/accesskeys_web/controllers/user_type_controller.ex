@@ -27,7 +27,8 @@ defmodule AccesskeysWeb.UserTypeController do
 
     # Add the filtered string array to the user_params
     user_type_params = Map.put(user_type_params, "actions", checked_actions)
-
+    IO.puts "_______create User Type_________"
+    IO.inspect(user_type_params)
     case Accounts.create_user_type(user_type_params) do
       {:ok, user_type} ->
         conn
